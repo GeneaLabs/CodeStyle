@@ -1,6 +1,9 @@
 # CodeStyle
 A living document of notes and thoughts on code style and organization.
 
+## NPM Dependencies
+- Install all npm packages that will be pre-compiled as dev requirements when using them in Laravel.
+
 ## Models
 
 ### Organization
