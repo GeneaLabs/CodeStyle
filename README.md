@@ -14,7 +14,7 @@ A living document of notes and thoughts on code style and organization.
 
 ### Views
 - View routes should have no namespace.
-- View routes should be use implicit controllers: https://laravel.com/docs/5.1/controllers#implicit-controllers.
+- View routes should use implicit controllers: https://laravel.com/docs/5.1/controllers#implicit-controllers.
 - View route controllers should be named after the blade view folder they are responsible for.
 - View route controller methods should be named after the action they are responsible for.
 - View route controllers should only be responsible for a single view type, but responsible for all sub-views, like:
