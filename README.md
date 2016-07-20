@@ -4,6 +4,36 @@ A living document of notes and thoughts on code style and organization.
 ## NPM Dependencies
 - Install all npm packages that will be pre-compiled as dev requirements when using them in Laravel.
 
+## Classes
+### Naming
+Name classes after what they are, and not what they do. For example, the following is corrent, and the later not so much:
+
+```php
+class Name
+{
+  private $firstName;
+  private $lastName;
+  
+  function print()
+  {
+    return "{$this->firstName} {$this->lastName}";
+  }
+}
+```
+
+```php
+class NamePrinter
+{
+  private $firstName;
+  private $lastName;
+  
+  function print()
+  {
+    return "{$this->firstName} {$this->lastName}";
+  }
+}
+```
+
 ## Controllers & Routes
 ### APIs
 - API routes should be within an `API` route namespace.
