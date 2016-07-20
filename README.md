@@ -34,6 +34,11 @@ class NamePrinter
 }
 ```
 
+### Constructors
+- Prefer many constructors of many public methods, when possible.
+- Use one primary constructor, along with multiple secondary (named) constructors that all make use of the primary constructor.
+- Constructors should not include any functionality or logic, but merely assign values to object properties. If logic needs to be performed, this is an indication that the information passed in should actually be another object.
+
 ## Controllers & Routes
 ### APIs
 - API routes should be within an `API` route namespace.
