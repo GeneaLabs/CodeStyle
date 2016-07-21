@@ -109,6 +109,15 @@ class NamePrinter
 - Laravel models are the de-facto persistence repository, especially in eloquent.
 - Do not use the generic eloquent CRUD methods `save()`, `update()`, `create()`, `delete()`, etc. outside of the model. Instead create descriptive methods that explain exactly what is happening. This decouples the business domain from the persistence domain of the app, as well as makes code so much more humanly readable. For instance: instead of `$user->save()` create a method that handles a specific situation, like `$agent->addListingInfo($listingInfo);` and then handle all the data parsing and assignment in the method, at the end of which `$this->save()` is called to persist the changes.
 
+### Tests
+- Always write unit and integration tests, testing for success and failure for each scenario.
+- Only test public methods of classes.
+- Write tests so that they cover all protected and private methods of the class, accessed through the public methods. If there are non-public methods that aren't covered, they are either inaccessible, or the tests are comprehensive enough. If they are inaccessible, those methods should be removed.
+- Tests should document the functionality of classes and their methods.
+- Mock any external interfaces you don't control, and test for both successes and failures.
+- Do not mock classes that you control.
+- 
+
 ## Vue
 ### Components
 - Use the `vueify` npm package to create components in a single file with a `.vue` extension.
