@@ -42,7 +42,16 @@ class NamePrinter
 - They should be used with any class that is used in _dependency injection_ or _inversion of control_ containers. This lets us easily switch out implementations, especially in third-party-packages that might require some customization.
 
 ### Statics
-- Avoid static classes. Classes are intended to be instanciated and be identifiable. Static classes do not have an identity are are not true objects, thus are a stow-away from the procedural era.
+Avoid static classes. Classes are intended to be instanciated and be identifiable. Static classes do not have an identity are are not true objects, thus are a stow-away from the procedural era.
+
+Further, static classes and methods are little more than modern equivalents of `GOTO` statments, procedural in nature. OOP goes beyond that, the object is the defining principle, not the code. Static classes and mothods are a crutch used to think procedurally under the guise of seeming object-oriented.
+
+**We want our classes to be declarative, not imperative.**
+
+From wikipedia: 
+> Declarative programming is a programming paradigm—a style of building the structure and elements of computer programs—that expresses the logic of a computation without describing its control flow.
+
+> Imperative programming is a programming paradigm that uses statements that change a program's state. In much the same way that the imperative mood in natural languages expresses commands, an imperative program consists of commands for the computer to perform. Imperative programming focuses on describing how a program operates.
 
 ### Constructors
 - Prefer many constructors of many public methods, when possible.
