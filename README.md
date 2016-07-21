@@ -1,10 +1,25 @@
 # CodeStyle
 A living document of notes and thoughts on code style and organization.
 
-## NPM Dependencies
-- Install all npm packages that will be pre-compiled as dev requirements when using them in Laravel.
+## Exceptions
+- Catch errors and exceptions as soon as possible. Use type hinting and return types as one aspect toward achievng this.
+
+## Type Hinting & Return Types
+- Type hint all method parameters and return values.
+- Type hints serve as documentation, making the code more fluent and readable.
+- Type hints and return types prevent some logic errors from propogating.
 
 ## Classes
+### Introspection and Type Casting
+- Avoid introspection (checking the type of the class to determine the outcome of a condition).
+- Avoid type casting.
+- Both imply that logic should be encapsulated or refactored, likely resulting in rearranging or creation of classes.
+
+### Final or Abstract, Never Neither
+- Final classes cannot be extended. They are the final version of that class.
+- Abstract classes need to be extended, and cannot be used alone.
+- Avoid open-ended classes that are neither final nor abstract. Since you control the code, and it is unlikely to be used willy-nilly by anyone else free-standing, and class that is not abstract should by default be final.
+
 ### Mutability
 - **TBD** Classes should be immutable. If something is changed, they should return a new instance with the changed values. (Does this even make since in a Laravel context? I think this really only comes into play for Value Objects that aren't models.)
 
@@ -53,6 +68,8 @@ From wikipedia:
 
 > Imperative programming is a programming paradigm that uses statements that change a program's state. In much the same way that the imperative mood in natural languages expresses commands, an imperative program consists of commands for the computer to perform. Imperative programming focuses on describing how a program operates.
 
+Static classes consisting of collections of static methods, also known as utility classes, are nothing more than a bunch of non-OOP helper methods grouped together.
+
 ### Constructors
 - Prefer many constructors of many public methods, when possible.
 - Use one primary constructor, along with multiple secondary (named) constructors that all make use of the primary constructor.
@@ -64,11 +81,16 @@ From wikipedia:
 - **TBD** Avoid public properties where possible. Class properties should only be set through constructors and manipulated through methods. (Are getters and settings preferrable over public properties -- what dangers are there to consider? What is the underlying reason this is considered such a bad thing?)
 - Avoid setting properties to null. (And conversely avoid null-checks.)
 
-### Method Names
+### Methods
 - Name methods according to what they return. Their names should be self-documenting.
 - Methods that perform an action should be a verb, and return `null`.
 - Methods that return objects should be nouns and named after the object they return (they can be prefixed with adjectives that help better describe the object being returned).
 - Consider method names that are actions, but where an object is returned, like `save()`. In those cases, instead of returning `null`, return the object instance instead.
+- Methods should only return one type of data, never mixed.
+- Methods should have a declared parameter list, and not use a dynamic one (exceptions exist of course for magic methods).
+
+#### Getters and Setters
+- Do not use getters and setters, other than the special methods used in models (`getPropertyAttribute()` and `setPropertyAttribute($value)`).
 - 
 
 ## Controllers & Routes
@@ -118,14 +140,22 @@ From wikipedia:
 - Laravel models are the de-facto persistence repository, especially in eloquent.
 - Do not use the generic eloquent CRUD methods `save()`, `update()`, `create()`, `delete()`, etc. outside of the model. Instead create descriptive methods that explain exactly what is happening. This decouples the business domain from the persistence domain of the app, as well as makes code so much more humanly readable. For instance: instead of `$user->save()` create a method that handles a specific situation, like `$agent->addListingInfo($listingInfo);` and then handle all the data parsing and assignment in the method, at the end of which `$this->save()` is called to persist the changes.
 
-### Tests
+## Tests
 - Always write unit and integration tests, testing for success and failure for each scenario.
 - Only test public methods of classes.
 - Write tests so that they cover all protected and private methods of the class, accessed through the public methods. If there are non-public methods that aren't covered, they are either inaccessible, or the tests are comprehensive enough. If they are inaccessible, those methods should be removed.
 - Tests should document the functionality of classes and their methods.
 - Mock any external interfaces you don't control, and test for both successes and failures.
 - Do not mock classes that you control.
-- 
+
+## NULL
+- Avoid the use of `null`, both as a negative return value from a method, but also as default parameters.
+- Instead of `null`, use null-classes of the same type expected to be returned from methods.
+- Use null-objects as default parameters if none are passed in to methods.
+
+
+## NPM Dependencies
+- Install all npm packages that will be pre-compiled as dev requirements when using them in Laravel.
 
 ## Vue
 ### Components
