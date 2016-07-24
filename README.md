@@ -56,21 +56,6 @@ class NamePrinter
 - Contracts aren't always necessary.
 - They should be used with any class that is used in _dependency injection_ or _inversion of control_ containers. This lets us easily switch out implementations, especially in third-party-packages that might require some customization.
 
-### NULL-Objects
-Do not use null-objects as a substitute for using `null` for negative results (btw, don't use `null` anywhere in code, as it is semantically void). Instead, add a `__toString()` method that returns an empty string for empty models, and non-empty value for valid objects. For example:
-
-  ```php
-  public function __toString()
-  {
-      return "{$this->getPrimaryKey()}";
-  }
-  ```
-
-This has the following benefits:
-- Less cluttered code by eliminating noisy null-object classes (which serve no other purpose than to eliminate null-checks).
-- Ease of maintenance.
-- Adherence to single responsibility pronciple, in that a method only returns a single type of data.
-
 ### Statics
 Avoid static classes. Classes are intended to be instanciated and be identifiable. Static classes do not have an identity are are not true objects, thus are a stow-away from the procedural era.
 
@@ -165,9 +150,22 @@ Static classes consisting of collections of static methods, also known as utilit
 
 ## NULL
 - Avoid the use of `null`, both as a negative return value from a method, but also as default parameters.
-- Instead of `null`, use null-classes of the same type expected to be returned from methods.
-- Use null-objects as default parameters if none are passed in to methods.
+- Instead of `null`, use empty classes of the same type expected to be returned from methods (see NULL-Objects section).
 
+### NULL-Objects
+Do not use null-objects as a substitute for using `null` for negative results (btw, don't use `null` anywhere in code, as it is semantically void). Instead, add a `__toString()` method that returns an empty string for empty models, and non-empty value for valid objects. For example:
+
+  ```php
+  public function __toString()
+  {
+      return "{$this->getPrimaryKey()}";
+  }
+  ```
+
+This has the following benefits:
+- Less cluttered code by eliminating noisy null-object classes (which serve no other purpose than to eliminate null-checks).
+- Ease of maintenance.
+- Adherence to single responsibility pronciple, in that a method only returns a single type of data.
 
 ## NPM Dependencies
 - Install all npm packages that will be pre-compiled as dev requirements when using them in Laravel.
