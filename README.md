@@ -7,7 +7,7 @@ A living document of notes and thoughts on code style and organization.
 ## Type Hinting & Return Types
 - Type hint all method parameters and return values.
 - Type hints serve as documentation, making the code more fluent and readable.
-- Type hints and return types prevent some logic errors from propogating.
+- Type hints and return types prevent some logic errors from propogating, catching them as close as possible to their source.
 
 ## Classes
 ### Introspection and Type Casting
