@@ -91,7 +91,6 @@ Static classes consisting of collections of static methods, also known as utilit
 
 #### Getters and Setters
 - Do not use getters and setters, other than the special methods used in models (`getPropertyAttribute()` and `setPropertyAttribute($value)`).
-- 
 
 ## Controllers & Routes
 ### APIs
@@ -152,6 +151,7 @@ Static classes consisting of collections of static methods, also known as utilit
 - Avoid the use of `null`, both as a negative return value from a method, but also as default parameters.
 - Instead of `null`, use empty classes of the same type expected to be returned from methods (see NULL-Objects section).
 
+## Patterns 
 ### NULL-Objects
 Do not use null-objects as a substitute for using `null` for negative results (btw, don't use `null` anywhere in code, as it is semantically void). Instead, add a `__toString()` method that returns an empty string for empty models, and non-empty value for valid objects. For example:
 
@@ -166,6 +166,10 @@ This has the following benefits:
 - Less cluttered code by eliminating noisy null-object classes (which serve no other purpose than to eliminate null-checks).
 - Ease of maintenance.
 - Adherence to single responsibility pronciple, in that a method only returns a single type of data.
+
+### DRY
+- Do not apply the dry principle to code that deals with content, or even content itself.
+- Apply DRY only to code that deals with logic.
 
 ## NPM Dependencies
 - Install all npm packages that will be pre-compiled as dev requirements when using them in Laravel.
