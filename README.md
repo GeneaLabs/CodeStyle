@@ -167,9 +167,10 @@ This has the following benefits:
 - Ease of maintenance.
 - Adherence to single responsibility pronciple, in that a method only returns a single type of data.
 
-### DRY
+### DRY (Do Not Repeat Yourself)
 - Do not apply the dry principle to code that deals with content, or even content itself.
 - Apply DRY only to code that deals with logic.
+- If you find wet code, but it doesn't appear that it can be dried out, you might have an architectural flaw. Restructuring or refactoring your classes could help.
 
 ## NPM Dependencies
 - Install all npm packages that will be pre-compiled as dev requirements when using them in Laravel.
