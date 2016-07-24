@@ -56,6 +56,21 @@ class NamePrinter
 - Contracts aren't always necessary.
 - They should be used with any class that is used in _dependency injection_ or _inversion of control_ containers. This lets us easily switch out implementations, especially in third-party-packages that might require some customization.
 
+### NULL-Objects
+Do not use null-objects as a substitute for using `null` for negative results (btw, don't use `null` anywhere in code, as it is semantically void). Instead, add a `__toString()` method that returns an empty string for empty models, and non-empty value for valid objects. For example:
+
+  ```php
+  public function __toString()
+  {
+      return "{$this->getPrimaryKey()}";
+  }
+  ```
+
+This has the following benefits:
+- Less cluttered code by eliminating noisy null-object classes (which serve no other purpose than to eliminate null-checks).
+- Ease of maintenance.
+- Adherence to single responsibility pronciple, in that a method only returns a single type of data.
+
 ### Statics
 Avoid static classes. Classes are intended to be instanciated and be identifiable. Static classes do not have an identity are are not true objects, thus are a stow-away from the procedural era.
 
@@ -77,7 +92,7 @@ Static classes consisting of collections of static methods, also known as utilit
 
 ### Properties
 - Keep classes to fewer than 4 properties where possible (Models are the exception).
-- Avoid classes that do not encapsulate any data (for example purely static classes), possibly with the exception of null-object class instances.
+- Avoid classes that do not encapsulate any data.
 - **TBD** Avoid public properties where possible. Class properties should only be set through constructors and manipulated through methods. (Are getters and settings preferrable over public properties -- what dangers are there to consider? What is the underlying reason this is considered such a bad thing?)
 - Avoid setting properties to null. (And conversely avoid null-checks.)
 
