@@ -175,6 +175,7 @@ This has the following benefits:
 ### Collections
 - Use collections for all the things.
 - Consider using classes as collection transformers:
+  
   > is there any intent to use more of magic method `__invoke` in future versions of Laravel? I found an interesting possibly to try things like: `$collection->map(new MyModelTransformer());`
 
 ## NPM Dependencies
