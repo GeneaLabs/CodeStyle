@@ -172,6 +172,11 @@ This has the following benefits:
 - Apply DRY only to code that deals with logic.
 - If you find wet code, but it doesn't appear that it can be dried out, you might have an architectural flaw. Restructuring or refactoring your classes could help.
 
+### Collections
+- Use collections for all the things.
+- Consider using classes as collection transformers:
+  > is there any intent to use more of magic method `__invoke` in future versions of Laravel? I found an interesting possibly to try things like: `$collection->map(new MyModelTransformer());`
+
 ## NPM Dependencies
 - Install all npm packages that will be pre-compiled as dev requirements when using them in Laravel.
 
