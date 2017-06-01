@@ -289,6 +289,10 @@ This has the following benefits:
 - Code should not have any default PHPMD, PHPCS, and PHPCPD warnings. (**TBD**
  Try not to customize the rule sets, if at all possible.)
 
+## Blade
+### Directives
+- All blade directives shouls have a space between the directive and the parameters, mirroring the way PSR2 handles the equivalent PHP statements (if, for, etc.).
+
 ## NPM Dependencies
 - Install all npm packages that will be pre-compiled as dev requirements when
  using them in Laravel.
