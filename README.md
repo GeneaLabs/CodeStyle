@@ -9,6 +9,10 @@ A living document of notes and thoughts on code style and organization.
 - Type hints serve as documentation, making the code more fluent and readable.
 - Type hints and return types prevent some logic errors from propogating, catching them as close as possible to their source.
 
+## Config and Env
+- Always assign env variables to config properties in the config file that is most appropriate (or create a new config file it that makes more sense).
+- Always refer to the config variable in your code, never reference `env('xxxxx', 'abc)` outside of config files.
+
 ## Classes
 ### Introspection and Type Casting
 - Avoid introspection (checking the type of the class to determine the outcome of a condition).
