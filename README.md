@@ -162,6 +162,9 @@ Static classes consisting of collections of static methods, also known as utilit
   ```
 
 ## Models
+### Eager Loading
+- Avoid eager loading relationships in the `protected $with = [];` variable.
+- Try to explicitly load relationships at the point they are used.
 
 ### Organization
 1. List `use` classes.
