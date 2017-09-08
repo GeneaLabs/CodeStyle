@@ -13,11 +13,16 @@ Don't query relationship properties on models directly. Instead expose the relat
 ```php
 class Book extends Model
 {
+    use BookRepository;
+    
     public function author() : HasOne
     {
         return $this->hasOne(Author::class);
     }
+}
 
+trait BookRepository
+{
     public function getAuthorNameAttribute() : string
     {
         return $this->author->name ?? '';
