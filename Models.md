@@ -29,3 +29,7 @@ trait BookRepository
     }
 }
 ```
+
+## Naming Conventions
+### For Properties or Methods with Certain Return Types
+- boolean props or methods that check if a certain condition is true should be named `has<Condition in past tense>`.
