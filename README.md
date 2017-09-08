@@ -1,6 +1,8 @@
 # CodeStyle
 A living document of notes and thoughts on code style and organization.
 
+[Models](https://github.com/GeneaLabs/CodeStyle/blob/master/Models.md)
+
 ## Exceptions
 - Catch errors and exceptions as soon as possible. Use type hinting and return types as one aspect toward achievng this.
 
