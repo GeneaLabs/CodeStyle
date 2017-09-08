@@ -1,4 +1,8 @@
 # Models
+## Structure
+- Model class should only contain properties and relationship methods.
+- All attribute methods should be extracted to an Attributes trait.
+- All queriy methods should be extracted to an Query trait.
 
 ## Eloquent Queries
 All Eloquent queries should be processed in dedicated methods within the model itself,
