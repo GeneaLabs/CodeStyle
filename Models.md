@@ -37,3 +37,7 @@ trait BookRepository
 ## Naming Conventions
 ### For Properties or Methods with Certain Return Types
 - boolean props or methods that check if a certain condition is true should be named `has<Condition in past tense>`.
+
+### For Query Methods
+- methods returning a single instance should be prefixed with `find` followed by the name of the model instance it returns, for example `->findUserByName(string $name)`.
+- methods returning a collection of instances should be prefixed with `get` followed by the name of the model instances is returns, for example `->getUsersByType(string $type)`.
