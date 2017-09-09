@@ -1,4 +1,16 @@
 # Models
+The benefits of this guide go deep beneath the surface, and at first glance may not be apparent:
+- centralized place of maintenance in the attribute and query traits.
+- deep performance optimization via centralized caching in the traits. This automatically ensures that relationship
+  references are cached as well, for example when looping over a relationship collection.
+- reduced technical dept, as queries and custom attributes are all contained in known centralized traits. This makes
+  maintenance much easier when fixing or optimizing queries, as it is no longer necessary to inspect your entire codebase.
+- reduced visual dept in models, as the custom parts are separated out into traits, keeping the model itself lean and
+  to the point.
+- adoption of better patterns: separating and centralizing queries helps DRY up your code, as well as force you to
+  think more about how each query works and discover areas it can be optimized, by pulling it out of context, and
+  looking at it on its own, without being distracted by the domain logic surrounging it.
+
 ## Structure
 - Model class should only contain properties and relationship methods.
 - All attribute methods should be extracted to an Attributes trait.
