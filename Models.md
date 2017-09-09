@@ -1,4 +1,6 @@
 # Models
+This pattern is not a Repository patter, but instead an adaptation thereof for Laravel models. Laravel models already implement the repository patter in how they are build on top of Eloquent, so splitting out each model into multiple single-use-traits is an effort to maintain organziation, while the other rules enforce the repository pattern of the model throughout the code-base.
+
 The benefits of this guide go deep beneath the surface, and at first glance may not be apparent:
 - centralized place of maintenance in the attribute and query traits.
 - deep performance optimization via centralized caching in the traits. This automatically ensures that relationship
