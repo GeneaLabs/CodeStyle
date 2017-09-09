@@ -157,3 +157,8 @@ trait Book
 ### For Query Methods
 - methods returning a single instance should be prefixed with `find` followed by the name of the model instance it returns, for example `->findUserByName(string $name)`.
 - methods returning a collection of instances should be prefixed with `get` followed by the name of the model instances is returns, for example `->getUsersByType(string $type)`.
+
+## Caching
+- Chaching should only be done using tags named after the model, and any specific parameters that make that query unique. Cache tags should be flushed when the corresponding model gets updated, saved, or deleted, so that subsequent responses will incorprate the changes.
+- All queries in the model's query trait should be cached, as well those in attribute methods that access the database directly, and not through an already cached model query.
+- Cached queries should be cached forever by default. However, if they incorporate timestamps or other temporal conditions, a sensible timeout should be set, depending on their use-case, typically between 1 and 15 minutes.
