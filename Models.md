@@ -16,7 +16,7 @@ The benefits of this guide go deep beneath the surface, and at first glance may 
 ## Structure
 - Model class should only contain properties and relationship methods.
 - All attribute methods should be extracted to an Attributes trait.
-- All queriy methods should be extracted to an Query trait.
+- All queriy methods should be extracted to a Query trait.
 
 ```
 App
