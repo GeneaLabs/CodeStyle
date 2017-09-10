@@ -1,4 +1,8 @@
 # Editors
+While there are no specific requirements as to which editor is used (we all have our favorites, right?), it is required that the editors are configured with live linting of the following processes:
+- PHP Mess Detector
+- PHP Code Sniffer
+- PHP Validator using PHP 7.1
 
 ## Cheat Sheets
 ### Atom
