@@ -26,7 +26,46 @@ App
  | |
  | \-Queries
  |   \-Book
+ |-BaseModel
  \-Book
+```
+
+```php
+<?php namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class BaseModel extends Model
+{
+    public static function boot()
+    {
+        parent::boot();
+
+        $slug = str_slug(get_class(self));
+
+        static::created(function () {
+            $this->flushCache($slug);
+        });
+
+        static::deleted(function () {
+            $this->flushCache($slug);
+        });
+
+        static::saved(function () {
+            $this->flushCache($slug);
+        });
+
+        static::updated(function () {
+            $this->flushCache($slug);
+        });
+    }
+
+    public function flushCache(string $tag)
+    {
+        cache()->tags([$tag])
+            ->flush();
+    }
+}
 ```
 
 ```php
