@@ -26,6 +26,7 @@ App
  | |
  | \-Queries
  |   \-Book
+ |
  |-BaseModel
  \-Book
 ```
@@ -35,34 +36,41 @@ App
 
 use Illuminate\Database\Eloquent\Model;
 
-class BaseModel extends Model
+abstract class BaseModel extends Model
 {
+    protected $classSlug;
+
+    public function __construct(array $attributes = [])
+    {
+        $this->classSlug = str_slug(get_class(self));
+
+        parent::__construct($attributes);
+    }
+
     public static function boot()
     {
         parent::boot();
 
-        $slug = str_slug(get_class(self));
-
         static::created(function () {
-            $this->flushCache($slug);
+            $this->flushCache();
         });
 
         static::deleted(function () {
-            $this->flushCache($slug);
+            $this->flushCache();
         });
 
         static::saved(function () {
-            $this->flushCache($slug);
+            $this->flushCache();
         });
 
         static::updated(function () {
-            $this->flushCache($slug);
+            $this->flushCache();
         });
     }
 
-    public function flushCache(string $tag)
+    public function flushCache()
     {
-        cache()->tags([$tag])
+        cache()->tags([$this->classSlug])
             ->flush();
     }
 }
@@ -143,7 +151,7 @@ trait Contact
 {
     public function getAll() : Collection
     {
-        return cache()->tags(['contact'])
+        return cache()->tags([$this->classSlug])
             ->rememberForever("contact-{$this->id}-getAll", function () {
                 return $this->orderBy('name')->get();
             });
@@ -153,7 +161,7 @@ trait Contact
     {
         $key = implode('-', $types);
 
-        return cache()->tags(['contact', 'contacttypes'])
+        return cache()->tags([$this->classSlug, 'contacttype'])
             ->rememberForever("contact-{$this->id}-getByTypes-{$key}", function () use ($types) {
                 return $this->with(['contactTypes' => function ($query) use ($types) {
                         $query->whereIn('title', $types);
