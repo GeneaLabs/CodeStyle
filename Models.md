@@ -34,43 +34,50 @@ App
 ```php
 <?php namespace App;
 
+use Illuminate\Cache\TaggableStore;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
+use Illuminate\View\View;
+use Laravel\Scout\Searchable;
 
 abstract class BaseModel extends Model
 {
-    protected $classSlug;
-
-    public function __construct(array $attributes = [])
-    {
-        $this->classSlug = str_slug(get_class(self));
-
-        parent::__construct($attributes);
-    }
+    use Searchable;
 
     public static function boot()
     {
         parent::boot();
 
         static::created(function () {
-            $this->flushCache();
+            self::flushCache();
         });
 
         static::deleted(function () {
-            $this->flushCache();
+            self::flushCache();
         });
 
         static::saved(function () {
-            $this->flushCache();
+            self::flushCache();
         });
 
         static::updated(function () {
-            $this->flushCache();
+            self::flushCache();
         });
     }
 
-    public function flushCache()
+    public function cache(array $additionalTags = []) : View
     {
-        cache()->tags([$this->classSlug])
+        if (cache()->getStore() instanceof TaggableStore) {
+            $tags = array_push($additionalTags, str_slug(self::class));
+            $cache = $cache->tags($tags);
+        }
+
+        return $cache;
+    }
+
+    public static function flushCache()
+    {
+        cache()->tags([str_slug(self::class)])
             ->flush();
     }
 }
