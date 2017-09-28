@@ -154,22 +154,6 @@ Static classes consisting of collections of static methods, also known as utilit
   - /resources/views/reports/show.blade.php
   - etc...
 
-### Requests
-- All controller methods that accept data should validate the incoming data
- through Requests.
-- All controller methods that accept data should process the incoming data in a
- `process()` method that returns whatever object necessary to continue and logic
- in the controller method. For example:
-
-  ```php
-      public function store(CreateReport $request) : RedirectResponse
-    {
-        $search = $request->process();
-
-        return redirect()->route('reports.show', ['addressSlug' => $search->address->slug]);
-    }
-  ```
-
 ## Models
 ### Eager Loading
 - Avoid eager loading relationships in the `protected $with = [];` variable.
