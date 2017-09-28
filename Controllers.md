@@ -14,3 +14,20 @@ Controllers should contain no business logic. Instead, various types of business
 ## Structure
 Controllers should only contain RESTful methods. If additional methods seem to be needed,
 a new RESTful controller with an appropriate name should be created to satisfy that need.
+
+## Request Objects
+- All controller methods that accept data should validate the incoming data
+ using Request objects
+- All controller methods that accept data should process the incoming data in a
+ `process()` method that returns whatever object necessary to continue the logic
+ in the controller method. For example:
+
+  ```php
+      public function store(CreateReport $request) : RedirectResponse
+    {
+        $search = $request->process();
+
+        return redirect()->route('reports.show', ['addressSlug' => $search->address->slug]);
+    }
+  ```
+  
