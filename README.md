@@ -7,7 +7,7 @@ A living document of notes and thoughts on code style and organization.
 - [Environment Variables](https://github.com/GeneaLabs/CodeStyle/blob/master/Models.md)
 - [Classes](https://github.com/GeneaLabs/CodeStyle/blob/master/Models.md)
 - [Models](https://github.com/GeneaLabs/CodeStyle/blob/master/Models.md)
-- [Controllers](https://github.com/GeneaLabs/CodeStyle/blob/master/Models.md)
+- [Controllers](https://github.com/GeneaLabs/CodeStyle/blob/master/Controllers.md)
 - [Testing](https://github.com/GeneaLabs/CodeStyle/blob/master/Models.md)
 
 ## Exceptions
