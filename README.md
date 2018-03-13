@@ -1,14 +1,18 @@
 # GeneaLab's Laravel Code Style Guide
 A living document of notes and thoughts on code style and organization.
 
+## General
 - [Conventions](https://github.com/GeneaLabs/CodeStyle/blob/master/Models.md)
 - [Patterns](https://github.com/GeneaLabs/CodeStyle/blob/master/Models.md)
 - [Exceptions](https://github.com/GeneaLabs/CodeStyle/blob/master/Models.md)
 - [Environment Variables](https://github.com/GeneaLabs/CodeStyle/blob/master/Models.md)
 - [Classes](https://github.com/GeneaLabs/CodeStyle/blob/master/Models.md)
-- [Models](https://github.com/GeneaLabs/CodeStyle/blob/master/Models.md)
-- [Controllers](https://github.com/GeneaLabs/CodeStyle/blob/master/Controllers.md)
 - [Testing](https://github.com/GeneaLabs/CodeStyle/blob/master/Models.md)
+
+## Laravel
+- [Routes](https://github.com/GeneaLabs/CodeStyle/blob/master/Routes.md)
+- [Controllers](https://github.com/GeneaLabs/CodeStyle/blob/master/Controllers.md)
+- [Models](https://github.com/GeneaLabs/CodeStyle/blob/master/Models.md)
 
 ## Exceptions
 - Catch errors and exceptions as soon as possible. Use type hinting and return types as one aspect toward achievng this.
