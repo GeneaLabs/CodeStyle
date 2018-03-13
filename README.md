@@ -10,6 +10,7 @@ A living document of notes and thoughts on code style and organization.
 - [Testing](https://github.com/GeneaLabs/CodeStyle/blob/master/Models.md)
 
 ## Laravel
+- [Environment Configuration](https://github.com/GeneaLabs/CodeStyle/blob/master/EnvironmentConfiguration.md)
 - [Routes](https://github.com/GeneaLabs/CodeStyle/blob/master/Routes.md)
 - [Controllers](https://github.com/GeneaLabs/CodeStyle/blob/master/Controllers.md)
 - [Models](https://github.com/GeneaLabs/CodeStyle/blob/master/Models.md)
