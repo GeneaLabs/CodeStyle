@@ -5,7 +5,6 @@ A living document of notes and thoughts on code style and organization.
 - [Conventions](https://github.com/GeneaLabs/CodeStyle/blob/master/Models.md)
 - [Patterns](https://github.com/GeneaLabs/CodeStyle/blob/master/Models.md)
 - [Exceptions](https://github.com/GeneaLabs/CodeStyle/blob/master/Models.md)
-- [Environment Variables](https://github.com/GeneaLabs/CodeStyle/blob/master/Models.md)
 - [Classes](https://github.com/GeneaLabs/CodeStyle/blob/master/Models.md)
 - [Testing](https://github.com/GeneaLabs/CodeStyle/blob/master/Models.md)
 
