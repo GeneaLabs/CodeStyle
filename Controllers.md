@@ -15,6 +15,22 @@ Controllers should contain no business logic. Instead, various types of business
 Controllers should only contain RESTful methods. If additional methods seem to be needed,
 a new RESTful controller with an appropriate name should be created to satisfy that need.
 
+### Single-Method Controllers
+If the controller only has a single method, use `__invoke()`.
+```php
+<?php namespace App\Http\Controllers;
+
+use Illuminate\View\View;
+
+class WelcomeController extends Controller
+{
+    public function __invoke() : View
+    {
+        return view('welcome');
+    }
+}
+```
+
 ## Request Objects
 - All controller methods that accept data should validate the incoming data
  using Request objects
