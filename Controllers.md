@@ -1,10 +1,9 @@
 # Controllers
 
 ## Purpose
-Controllers serve only three purposes:
-1. Triggered by a request.
-2. Gather the response required for a specific request.
-3. Return the response in , well, response to the request.
+Controllers serve only two purposes:
+1. Process a specific request, handled by a request object (see below).
+2. Return an appropriate repsonse, handled by a response object (see below).
 
 Controllers should contain no business logic. Instead, various types of business logic should be extracted out to:
 - form submission processing should be extracted to Form Request objects.
@@ -47,3 +46,85 @@ class WelcomeController extends Controller
     }
   ```
   
+## Response Objects
+Resource objects should be utilized to build up and return all data and objects required by the view to the view.
+```php
+<?php namespace App\Http\Controllers\Reports;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\Reports\Event as Request;
+use App\Http\Responses\Reports\Events\Csv;
+use Illuminate\Contracts\Support\Responsable;
+
+class Event extends Controller
+{
+    public function index(Request $request) : Responsable
+    {
+        return new Csv(
+            $request->process(),
+            'CEEd Events Report.csv'
+        );
+    }
+}
+```
+
+```php
+<?php namespace App\Http\Responses\Reports\Events;
+
+use App\Http\Resources\BaseResourceCollection;
+use Illuminate\Contracts\Support\Responsable;
+use Illuminate\Http\Response;
+use League\Csv\Writer;
+use SplTempFileObject;
+
+class Csv implements Responsable
+{
+    protected $downloadFilename;
+    protected $events;
+
+    public function __construct(
+        BaseResourceCollection $events,
+        string $downloadFilename
+    ) {
+        $this->downloadFilename = $downloadFilename;
+        $this->events = $events;
+    }
+
+    /**
+     * @SuppressWarnings(PHPMD.StaticAccess)
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function toResponse($request) : Response
+    {
+        $csv = Writer::createFromFileObject(new SplTempFileObject);
+        $csv->insertOne([
+            'Season',
+            'Starts At',
+            'Ends At',
+            'Program',
+            'Venue',
+            'Moderators',
+            'Musicians',
+        ]);
+
+        $this->events->each(function ($event) use ($csv) {
+            $csv->insertOne([
+                $event->seasonName,
+                $event->starts_at,
+                $event->ends_at,
+                $event->programName,
+                $event->venueName,
+                $event->moderators->pluck('name')->implode(', '),
+                $event->musicians->pluck('name')->implode(', '),
+            ]);
+        });
+
+        $headers = [
+            'Content-Type' => 'text/csv; charset=UTF-8',
+            'Content-Disposition' => "attachment; filename=\"{$this->downloadFilename}\"",
+        ];
+
+        return response((string)$csv, 200, $headers);
+    }
+}
+```
