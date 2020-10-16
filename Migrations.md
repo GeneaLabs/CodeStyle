@@ -5,6 +5,7 @@
 ## Foreign Keys
 - Foreign keys should be set on all fields that refer to another table.
 - Foreign key fields should be defined as `$table->unsignedBigInteger()`.
+- Try to avoid manually naming the FK, instead let Laravel generate the name. This ensures consistent and predicatable naming across the board.
 
 ### onDelete()
 - Use `CASCADE` when the current table record should be deleted if the refering record is deleted.
