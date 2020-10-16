@@ -12,4 +12,4 @@
 - Use `RESTRICT` when the deletion of the refering record should be prevented if the current record exists.
 
 ### onUpdate()
-- This should almost always be set to `CASCADE`.
+- This should almost always be set to `CASCADE`, meaning if the primary key of the refering record changes, this foreign key will update to retain the relationship.
