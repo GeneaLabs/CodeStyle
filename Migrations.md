@@ -4,7 +4,7 @@
 
 ## Foreign Keys
 - Foreign keys should be set on all fields that refer to another table.
-- Foreign key fields should be defined as `unsignedBigInteger()`.
+- Foreign key fields should be defined as `$table->unsignedBigInteger()`.
 
 ### onDelete()
 - Use `CASCADE` when the current table record should be deleted if the refering record is deleted.
