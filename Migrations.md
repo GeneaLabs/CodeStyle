@@ -8,7 +8,7 @@
 
 ### onDelete()
 - Use `CASCADE` when the current table record should be deleted if the refering record is deleted.
-- Use `SET NULL` when the current table record should be preserved, even if the refering record is deleted. If the foreign key field is nullable, then you should use `SET NULL`.
+- Use `SET NULL` when the current table record should be preserved, even if the refering record is deleted. If the foreign key field is nullable you should use `SET NULL`.
 - Use `RESTRICT` when the deletion of the refering record should be prevented if the current record exists.
 
 ### onUpdate()
